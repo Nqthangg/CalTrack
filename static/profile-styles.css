@@ -1,0 +1,330 @@
+/* Profile Page Specific Styles and Animations */
+
+/* Profile Container */
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 20px;
+    width: 1400px;
+    margin-top: 30px; /* Adjusted to account for navbar */
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Left Column: Profile Info */
+.profile-info {
+    width: 680px; /* Adjust width for balance */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent */
+    padding: 25px;
+    margin-top: 42px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 123, 255, 0.15);
+    font-size: 16px;
+    animation: fadeInLeft 1s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-info:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 123, 255, 0.2);
+}
+
+/* Avatar Section */
+.avatar-section {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    margin-left: 60px;
+    margin-bottom: 20px;
+    height: 240px;
+}
+
+.avatar-section .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar-section .avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+}
+
+.basic-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.basic-info p {
+    margin: 8px 0;
+    column-gap: 40px;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+    padding: 5px 0;
+}
+
+.basic-info p:hover {
+    transform: translateX(5px);
+}
+
+/* Profile Info Item */
+.profile-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-item:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+    transform: translateX(5px);
+}
+
+.profile-item i {
+    margin-right: 15px;
+    font-size: 22px;
+    color: #007bff;
+    transition: transform 0.4s ease, color 0.4s ease;
+}
+
+.profile-item:hover i {
+    transform: scale(1.2) rotate(5deg);
+    color: #0056b3;
+}
+
+/* Right Column: Profile Edit Form */
+.profile-edit {
+    width: 680px; /* Adjust width for balance */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 123, 255, 0.15);
+    animation: fadeInRight 1s ease-in-out;
+    margin-top: 42px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-edit:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 123, 255, 0.2);
+}
+
+.profile-edit h2 {
+    margin-bottom: 20px;
+    color: #007bff;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.profile-edit h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background: #007bff;
+    transition: width 0.3s ease;
+}
+
+.profile-edit:hover h2::after {
+    width: 100px;
+}
+
+.profile-edit input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* Form styling specific to profile */
+.profile-edit form {
+    background-color: rgba(248, 249, 250, 0.7);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    margin-top: 60px;
+}
+
+.profile-edit form:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-edit label {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.profile-edit label i {
+    margin-right: 8px;
+    color: #007bff;
+    transition: transform 0.3s ease;
+}
+
+.profile-edit label:hover i {
+    transform: scale(1.2);
+}
+
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.2);
+}
+
+.submit-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+}
+
+.submit-btn:hover::after {
+    left: 100%;
+}
+
+/* Profile-specific animations */
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Profile background effect */
+.profile-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Additional visual elements specific to profile */
+.profile-decoration {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 123, 255, 0.05);
+    pointer-events: none;
+}
+
+.profile-decoration:nth-child(1) {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 5%;
+    animation: float-slow 20s infinite alternate;
+}
+
+.profile-decoration:nth-child(2) {
+    width: 200px;
+    height: 200px;
+    bottom: 10%;
+    right: 5%;
+    animation: float-slow 25s infinite alternate-reverse;
+}
+
+.profile-decoration:nth-child(3) {
+    width: 150px;
+    height: 150px;
+    top: 30%;
+    right: 20%;
+    animation: float-slow 22s infinite alternate;
+}
+
+.profile-edit input {
+    width: 560px;
+}
+
+@keyframes float-slow {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate(30px, 30px) rotate(10deg);
+    }
+}
+
+/* Responsive adjustments for profile page */
+@media (max-width: 1440px) {
+    .profile-container {
+        width: 95%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .profile-info, .profile-edit {
+        width: 48%;
+    }
+    .profile-edit input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .profile-info, .profile-edit {
+        width: 95%;
+    }
+    
+    .avatar-section {
+        gap: 30px;
+        margin-left: 0;
+        justify-content: center;
+    }
+    
+    .profile-edit h2 {
+        font-size: 20px;
+    }
+}

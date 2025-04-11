@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>About</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='about-styles.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="mb-4">About The Calories Tracking App</h1>
+            <div class="card mb-5 shadow-sm border-0 bg-light">
+                <div class="d-flex align-items-center mb-4">
+                    <i class="fas fa-running fs-1 text-primary me-3"></i>
+                    <div>
+                        <h2 class="h3 mb-0">Our Mission</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">Key Features</h2>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <div class="feature-icon me-3">
+                                    <i class="fas fa-microchip text-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="h5">Arduino Integration</h3>
+                                    <p>Connect with Arduino sensors to capture real-time movement and activity data.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <div class="feature-icon me-3">
+                                    <i class="fas fa-fire text-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="h5">Calorie Estimation</h3>
+                                    <p>Automatic calculation of calories burned based on your movement patterns.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <div class="feature-icon me-3">
+                                    <i class="fas fa-chart-line text-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="h5">Activity Analytics</h3>
+                                    <p>Visualize your movement patterns with intuitive charts and real-time feedback.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-start">
+                                <div class="feature-icon me-3">
+                                    <i class="fas fa-mobile-alt text-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="h5">User-Friendly Interface</h3>
+                                    <p>Simple, intuitive controls designed for quick access during workouts.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">How It Works</h2>
+                    <div class="row text-center">
+                        <div class="col-md-4 mb-3 mb-md-0">
+                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-plug fs-2 text-primary"></i>
+                            </div>
+                            <h3 class="h5">1. Connect</h3>
+                            <p class="small">Pair your Arduino device with the app to start tracking your movements.</p>
+                        </div>
+                        <div class="col-md-4 mb-3 mb-md-0">
+                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-walking fs-2 text-primary"></i>
+                            </div>
+                            <h3 class="h5">2. Move</h3>
+                            <p class="small">Go about your daily activities while the app records your movement data.</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-chart-bar fs-2 text-primary"></i>
+                            </div>
+                            <h3 class="h5">3. Analyze</h3>
+                            <p class="small">Review your activity metrics and calorie expenditure in real-time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">Technology</h2>
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <img src="{{ url_for('static', filename='arduino.png') }}" alt="Arduino sensor diagram" class="img-fluid rounded shadow-sm">
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="h5 mt-3 mt-md-0">Arduino-Powered Tracking</h3>
+                            <p>Our app connects to Arduino microcontrollers equipped with accelerometers and other motion sensors to accurately track your movement patterns. The data is processed in real-time to calculate calories burned based on movement intensity and duration.</p>
+                            <div class="d-flex flex-wrap mt-3">
+                                <span class="badge bg-primary me-2 mb-2 py-2 px-3">Accelerometer</span>
+                                <span class="badge bg-primary me-2 mb-2 py-2 px-3">Gyroscope</span>
+                                <span class="badge bg-primary me-2 mb-2 py-2 px-3">Bluetooth</span>
+                                <span class="badge bg-primary me-2 mb-2 py-2 px-3">Real-time Data</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h2 class="h4 mb-3">Benefits</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-transparent">
+                                    <i class="fas fa-check-circle text-success me-2"></i> Accurate activity tracking
+                                </li>
+                                <li class="list-group-item bg-transparent">
+                                    <i class="fas fa-check-circle text-success me-2"></i> Personalized fitness insights
+                                </li>
+                                <li class="list-group-item bg-transparent">
+                                    <i class="fas fa-check-circle text-success me-2"></i> Real-time calorie estimation
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-transparent">
+                                    <i class="fas fa-check-circle text-success me-2"></i> Motivational progress tracking
+                                </li>
+                                <li class="list-group-item bg-transparent">
+                                    <i class="fas fa-check-circle text-success me-2"></i> Battery-efficient monitoring
+                                </li>
+                                <li class="list-group-item bg-transparent">
+                                    <i class="fas fa-check-circle text-success me-2"></i> User-friendly interface
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+<script src="{{ url_for('static', filename='about-animation.js') }}"></script>
+{% endblock %}

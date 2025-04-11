@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .admin-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .admin-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .reset-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+        }
+        
+        .success-alert {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        #resetAllCard {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        
+        #resetAllBtn {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <!-- Side Navbar -->
+    <nav class="navbar">
+        <div class="logo-container">
+          <a href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Website Logo">
+          </a>
+        </div>
+        <ul class="menu">
+          <li><i class="fa fa-bell" id="notification-bell"></i></li>
+          <li class="dropdown">
+            <a href="{{ url_for('home') }}">Home</a>
+            <ul class="dropdown-content">
+              <li><a href="{{ url_for('profile') }}">Profile</a></li>
+              <li><a href="{{ url_for('calories') }}">Calories</a></li>
+              <li><a href="{{ url_for('goal') }}">Goal</a></li>
+            </ul>
+          </li>
+          <li><a href="{{ url_for('about') }}">About</a></li>
+          <li><a href="{{ url_for('contact') }}">Contact</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- PIN Entry Form -->
+    <div id="pinEntryForm" class="pinEntryForm">
+        <h2 style="text-align: center; margin-bottom: 20px;">Admin Authentication</h2>
+        <p style="text-align: center;">Enter your PIN to access admin controls</p>
+        <div id="pinErrorAlert" style="display: none; padding: 10px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 20px;">
+            <strong>Error!</strong> Invalid PIN. Please try again.
+        </div>
+        <div style="margin-bottom: 15px;">
+            <input type="password" id="pinInput" maxlength="6" placeholder="Enter PIN" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; text-align: center; letter-spacing: 5px; font-size: 20px;">
+        </div>
+        <button id="submitPin" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+    </div>
+
+    <!-- Admin Content (initially hidden) -->
+    <div id="adminContent" style="display: none;">
+
+    <!-- Main Content -->
+    <div id="content">
+        <div class="ad-container">
+            <h2 class="mb-4 text-center">Admin Dashboard</h2>
+            <div class="alert alert-success success-alert" id="successAlert">
+                <strong>Success!</strong> <span id="successMessage"></span>
+            </div>
+                
+            <div class="row">
+                <!-- Achievement Stats Reset Card -->
+                <div class="col-md-6">
+                    <div class="admin-card bg-light">
+                        <h4 class="card-title"><i class="fas fa-medal"></i> Achievement Statistics</h4>
+                        <p>Reset user achievement statistics including burned calories, active hours, completed tasks, and ongoing tasks.</p>
+                        <button id="resetAchievementBtn" class="btn btn-primary reset-btn">Reset Achievement Stats</button>
+                    </div>
+                </div>
+                    
+                <!-- Calories Log Reset Card -->
+                <div class="col-md-6">
+                    <div class="admin-card bg-light">
+                        <h4 class="card-title"><i class="fas fa-fire"></i> Calories Log</h4>
+                        <p>Reset the user's calories log data for both regular activities and accelerometer data.</p>
+                        <button id="resetCaloriesBtn" class="btn btn-primary reset-btn">Reset Calories Log</button>
+                    </div>
+                </div>
+                    
+                <!-- Reset Today Card -->
+                <div class="col-md-6">
+                    <div class="admin-card bg-light">
+                        <h4 class="card-title"><i class="fas fa-calendar-day"></i> Today's Data</h4>
+                        <p>Reset only today's data including calories, tasks, and accelerometer data.</p>
+                        <button id="resetTodayBtn" class="btn btn-warning reset-btn">Reset Today's Data</button>
+                    </div>
+                </div>
+                    
+                <!-- Accelerometer Data Reset Card -->
+                <div class="col-md-6">
+                    <div class="admin-card bg-light">
+                        <h4 class="card-title"><i class="fas fa-running"></i> Accelerometer Data</h4>
+                        <p>Reset only the accelerometer-based calories burned data.</p>
+                        <button id="resetAccelerometerBtn" class="btn btn-primary reset-btn">Reset Accelerometer Data</button>
+                    </div>
+                </div>
+                    
+                <!-- Reset All Card -->
+                <div class="col-12">
+                    <div class="admin-card" id="resetAllCard">
+                        <h4 class="card-title"><i class="fas fa-exclamation-triangle"></i> Reset All Data</h4>
+                        <p><strong>Warning:</strong> This will reset all user data to default values. This action cannot be undone.</p>
+                        <button id="resetAllBtn" class="btn btn-danger reset-btn">Reset All Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script src="{{ url_for('static', filename='ad-script.js') }}"></script>
+</body>
+</html>

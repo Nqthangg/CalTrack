@@ -1,0 +1,461 @@
+/* Two-column layout CSS adjustments */
+
+/* Container for the two columns */
+.col-cal-container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 30px;
+    max-width: 100%;
+}
+
+/* Left and right columns */
+.col-cal-left, .col-cal-right {
+    flex: 1; /* Make each column take equal space */
+    min-width: 0; /* Prevent overflow */
+    max-width: 50%;
+}
+
+.col-cal-left {
+    flex: 1;
+}
+
+.col-cal-right {
+    flex: 1.2; /* Make this column proportionally wider */
+}
+
+/* Column specific styling */
+.exercise-column, .calorie-column {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.1);
+    overflow: hidden;
+    border: 1px solid rgba(0, 123, 255, 0.05);
+    transition: all 0.3s ease;
+    padding: 0 0 20px 0;
+    margin-bottom: 20px;
+}
+
+.exercise-column h3, .calorie-column h3 {
+    padding: 15px;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0, 123, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.exercise-column h3 {
+    color: #007bff;
+    background: linear-gradient(135deg, rgba(0,123,255,0.08), rgba(0,198,255,0.08));
+}
+
+.calorie-column h3 {
+    color: #ff7b00;
+    background: linear-gradient(135deg, rgba(255,123,0,0.08), rgba(255,175,0,0.08));
+}
+
+.exercise-column h3 i, .calorie-column h3 i {
+    font-size: 1.2rem;
+}
+
+/* Form panel enhancements */
+.exercise-column .form-panel, .calorie-column .form-panel {
+    margin: 0 15px 20px;
+    position: relative;
+}
+
+.exercise-column .form-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #007bff, #00c6ff);
+    border-radius: 4px 0 0 4px;
+}
+
+.calorie-column .form-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #ff7b00, #ffaf00);
+    border-radius: 4px 0 0 4px;
+}
+
+/* Custom styling for each column */
+.exercise-column {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,249,255,0.9));
+}
+
+.calorie-column {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,246,240,0.9));
+}
+
+/* Column animation */
+.exercise-column, .calorie-column {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: columnEntrance 0.8s forwards ease-out;
+}
+
+.exercise-column {
+    animation-delay: 0.1s;
+}
+
+.calorie-column {
+    animation-delay: 0.3s;
+}
+
+@keyframes columnEntrance {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Task section styling */
+.task-section {
+    margin: 0 15px 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 123, 255, 0.05);
+}
+
+.task-section h4 {
+    font-size: 1rem;
+    color: #0056b3;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 123, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.calorie-column .task-section h4 {
+    color: #ff7b00;
+    border-color: rgba(255, 123, 0, 0.1);
+}
+
+.task-section h4 i {
+    font-size: 0.9rem;
+}
+
+/* Calorie goals section */
+.calorie-goals-section {
+    margin: 0 15px;
+}
+
+.calorie-goals-section h4 {
+    font-size: 1rem;
+    color: #ff7b00;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 123, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.calorie-goals-section h4 i {
+    font-size: 0.9rem;
+}
+
+/* Empty state styling */
+#calorie-goal-progress {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 123, 0, 0.2);
+    text-align: center;
+    color: #6c757d;
+    padding: 15px;
+}
+
+/* Button styling for calorie column */
+.calorie-column .btn-calorie {
+    background: linear-gradient(135deg, #ff7b00, #ffaf00);
+    color: white;
+}
+
+.calorie-column .btn-calorie:hover {
+    background: linear-gradient(135deg, #ff9000, #ffc107);
+    box-shadow: 0 6px 15px rgba(255, 123, 0, 0.3);
+}
+
+.btn-group-cal {
+    width: 200px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .col-cal-container {
+        flex-direction: column;
+    }
+    
+    .col-cal-left, .col-cal-right {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .col-cal-left {
+        margin-bottom: 20px;
+    }
+}
+
+/* Decoration and floating effects */
+.column-decoration {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.column-blob {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.floating-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Horizontal goals container */
+.horizontal-goals-container {
+    position: relative;
+    overflow-x: auto;
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+
+.horizontal-goals-list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    padding: 5px;
+    min-height: 150px;
+}
+
+.scroll-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease;
+}
+
+.left-arrow {
+    left: 5px;
+}
+
+.right-arrow {
+    right: 5px;
+}
+
+.task-form .form-control,
+.task-form .form-check {
+    width: 100%;
+    max-width: 100%;
+}
+
+.task-form .input-group {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    max-width: 100%;
+}
+
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 0 0.25rem 0.25rem 0;
+    border-left: none;
+    margin-bottom: 14px;
+}
+
+.input-group > .form-control {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+    border-radius: 0.25rem 0 0 0.25rem;
+    border-right: none;
+}
+
+/* Help text styling */
+.form-help-text {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+input[type="number"], select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Time inputs adjustments */
+.time-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.time-inputs input {
+    flex: 1;
+    min-width: 0;
+}
+
+.tasks-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 0 15px;
+}
+
+.task-section {
+    flex: 1;
+    min-width: calc(33.33% - 15px);
+    margin: 0 0 15px 0;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 123, 255, 0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 768px) {
+    .task-section {
+        flex-basis: calc(33.33% - 15px);
+    }
+}
+
+/* For smaller screens, stack them */
+@media (max-width: 767px) {
+    .task-section {
+        flex-basis: 100%;
+    }
+}
+
+.calorie-goals-section {
+    margin: 0 15px;
+    width: calc(100% - 30px); /* Full width minus margins */
+}
+
+#calorie-goals-container {
+    width: 100%;
+}
+
+#calorie-goal-progress {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 123, 0, 0.2);
+    text-align: center;
+    color: #6c757d;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.calorie-goal-item {
+    width: 620px;
+}
+
+/* Goal card styling */
+.goal-card {
+    width: 100%;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 15px;
+    border-left: 4px solid #ff7b00;
+}
+
+/* Progress bar styling */
+.progress-container {
+    width: 100%;
+    height: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(135deg, #ff7b00, #ffaf00);
+    border-radius: 5px;
+}
+
+/* Status badge for goals */
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.achieved {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-save {
+    background-color: #007bff;
+    border-color: #007BFF;
+    height: 40px;
+}
+
+/* Delete button styling */
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}

@@ -1,0 +1,403 @@
+/* ===== BACKGROUND ENHANCEMENTS ===== */
+/* Animated calorie-themed background */
+body {
+    position: relative;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #f4f7fa 0%, #e6f0ff 100%);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23007bff' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'/%3E%3C/svg%3E");
+    opacity: 0.8;
+    z-index: -1;
+}
+
+/* Floating calorie elements */
+.floating-calories {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.calorie-icon {
+    position: absolute;
+    opacity: 0.1;
+    animation: float 15s infinite linear;
+}
+
+.calorie-icon:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    font-size: 30px;
+    animation-duration: 20s;
+    animation-delay: 0s;
+}
+
+.calorie-icon:nth-child(2) {
+    top: 70%;
+    left: 20%;
+    font-size: 24px;
+    animation-duration: 18s;
+    animation-delay: 2s;
+}
+
+.calorie-icon:nth-child(3) {
+    top: 40%;
+    left: 80%;
+    font-size: 28px;
+    animation-duration: 25s;
+    animation-delay: 5s;
+}
+
+.calorie-icon:nth-child(4) {
+    top: 80%;
+    left: 85%;
+    font-size: 22px;
+    animation-duration: 22s;
+    animation-delay: 1s;
+}
+
+.calorie-icon:nth-child(5) {
+    top: 20%;
+    left: 40%;
+    font-size: 26px;
+    animation-duration: 19s;
+    animation-delay: 3s;
+}
+
+.calorie-icon:nth-child(6) {
+    top: 60%;
+    left: 60%;
+    font-size: 32px;
+    animation-duration: 21s;
+    animation-delay: 7s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+/* Modified Dashboard cards */
+.dashboard-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 250px; /* Fixed width */
+    height: 180px; /* Fixed height */
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-card .label {
+    font-size: 18px;
+    font-weight: 500;
+    font: bold;
+    color: #555;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dashboard-card .value {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin: 10px 0;
+    position: relative;
+    animation: value-pulse 2s infinite alternate;
+}
+
+.dashboard-card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #007bff;
+    transition: transform 0.4s ease, color 0.4s ease;
+}
+
+/* Center the cards in middle of page */
+.info-column {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    gap: 10px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 220px; /* Reduced from 180px */
+}
+
+/* ===== DASHBOARD CARD ANIMATIONS ===== */
+.dashboard-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 24px rgba(0, 123, 255, 0.2);
+}
+
+@keyframes value-pulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+.dashboard-card:hover .icon {
+    transform: scale(1.2);
+    color: #0056b3;
+}
+
+/* Card glow effect */
+.dashboard-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.dashboard-card:hover::after {
+    left: 100%;
+}
+
+/* Cards appearing animation */
+.dashboard-card:nth-child(1) {
+    animation: card-appear 0.5s 0.1s ease-out both;
+}
+
+.dashboard-card:nth-child(2) {
+    animation: card-appear 0.5s 0.2s ease-out both;
+}
+
+.dashboard-card:nth-child(3) {
+    animation: card-appear 0.5s 0.3s ease-out both;
+}
+
+.dashboard-card:nth-child(4) {
+    animation: card-appear 0.5s 0.4s ease-out both;
+}
+
+@keyframes card-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) rotateX(-10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+/* Interactive calorie counter animation */
+.dashboard-card:first-child .value {
+    position: relative;
+    display: inline-block;
+}
+
+.dashboard-card:first-child:hover .value::after {
+    position: absolute;
+    right: -20px;
+    animation: fire-burn 1s infinite alternate;
+}
+
+@keyframes fire-burn {
+    0% {
+        transform: scale(1) rotate(-5deg);
+    }
+    100% {
+        transform: scale(1.2) rotate(5deg);
+    }
+}
+
+/* Progress bar animation for completed tasks */
+.progress-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #007bff, #00e5ff);
+    width: 0;
+    transition: width 1s ease-in-out;
+}
+
+.dashboard-card:hover .progress-indicator {
+    width: 100%;
+}
+
+/* Semicircle Quick Actions Menu - Updated */
+.quick-actions-container {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.quick-actions-toggle {
+    background-color: #007bff;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    animation: pulse 2s infinite;
+}
+
+.quick-actions-menu {
+    position: absolute;
+    top: 20%;
+    right: 30px;
+    transform-origin: right center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.quick-actions-container:hover .quick-actions-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.action-item {
+    width: 45px;
+    height: 45px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    position: absolute;
+}
+
+/* Position buttons in a crescent shape */
+.action-item:nth-child(1) {
+    transform: translate(-60px, -50px);
+}
+
+.action-item:nth-child(2) {
+    transform: translate(-80px, 0);
+}
+
+.action-item:nth-child(3) {
+    transform: translate(-60px, 50px);
+}
+
+.action-item:hover {
+    transform: scale(1.1) translate(-60px, -50px);
+    background-color: #f0f7ff;
+}
+
+.action-item:nth-child(2):hover {
+    transform: scale(1.1) translate(-80px, 0);
+}
+
+.action-item:nth-child(3):hover {
+    transform: scale(1.1) translate(-60px, 50px);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    }
+}
+
+.quick-actions-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.quick-actions-container:hover .quick-actions-toggle i {
+    transform: rotate(135deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .floating-calories {
+        display: none; /* Hide floating elements on small screens */
+    }
+    
+    .info-column {
+        flex-direction: column;
+        margin-top: 70px;
+    }
+    
+    .dashboard-card {
+        width: 90%;
+        max-width: 300px;
+        margin: 10px auto;
+    }
+    
+    .quick-actions-container {
+        right: 20px;
+    }
+    
+    .action-item:nth-child(1) {
+        transform: translate(-50px, -40px);
+    }
+    
+    .action-item:nth-child(2) {
+        transform: translate(-60px, 0);
+    }
+    
+    .action-item:nth-child(3) {
+        transform: translate(-50px, 40px);
+    }
+    
+    .action-item:hover {
+        transform: scale(1.1) translate(-50px, -40px);
+    }
+    
+    .action-item:nth-child(2):hover {
+        transform: scale(1.1) translate(-60px, 0);
+    }
+    
+    .action-item:nth-child(3):hover {
+        transform: scale(1.1) translate(-50px, 40px);
+    }
+}

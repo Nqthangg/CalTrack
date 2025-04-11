@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Home</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='home-styles.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Dashboard Cards -->
+<div class="info-column">
+    <div class="dashboard-card">
+        <div class="label">Total calories burned</div>
+        <div class="value">{{ user_data.burned_calories }}</div>
+        <div class="icon"><i class="fas fa-fire-alt"></i></div>
+        <div id="acc-calories-burned" style="display:none;">0</div>
+        <div class="progress-indicator"></div>
+    </div>
+    <div class="dashboard-card">
+        <div class="label">Total active hours</div>
+        <div class="value">{{ user_data.active_hours }}</div>
+        <div class="icon"><i class="fas fa-clock"></i></div>
+        <div class="progress-indicator"></div>
+    </div>
+    <div class="dashboard-card">
+        <div class="label">Completed tasks</div>
+        <div class="value">{{ user_data.completed_tasks }}</div>
+        <div class="icon"><i class="fas fa-trophy"></i></div>
+        <div class="progress-indicator"></div>
+    </div>
+    <div class="dashboard-card">
+        <div class="label">Ongoing tasks</div>
+        <div class="value">{{ user_data.ongoing_tasks }}</div>
+        <div class="icon"><i class="fas fa-tasks"></i></div>
+        <div class="progress-indicator"></div>
+    </div>
+</div>
+
+<!-- Semicircle Quick Actions Menu -->
+<div class="quick-actions-container">
+  <div class="quick-actions-toggle">
+      <i class="fas fa-plus"></i>
+  </div>
+  <div class="quick-actions-menu">
+      <a class="action-item" href="{{ url_for('goal') }}">
+          <i class="fas fa-tasks"></i>
+      </a>
+      <a class="action-item" href="{{ url_for('calories') }}">
+          <i class="fas fa-chart-bar"></i>
+      </a>
+      <a class="action-item" href="{{ url_for('profile') }}">
+          <i class="fas fa-address-card"></i>
+      </a>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static', filename='home-animation.js') }}"></script>
+{% endblock %}

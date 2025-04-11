@@ -1,0 +1,323 @@
+/* About Page Specific Styles and Animations */
+
+/* About Container */
+.container {
+    position: relative;
+    z-index: 10;
+    max-width: 1000px;
+}
+
+/* Cards styling */
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 123, 255, 0.15);
+    margin-bottom: 25px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 123, 255, 0.2);
+}
+
+/* Card header effect for cards with bg-light */
+.card.bg-light {
+    position: relative;
+    overflow: hidden;
+}
+
+.card.bg-light::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.05), transparent);
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.card.bg-light:hover::after {
+    left: 100%;
+}
+
+/* Feature icons */
+.feature-icon i {
+    font-size: 1.5rem;
+    color: #007bff;
+    transition: transform 0.4s ease, color 0.3s ease;
+}
+
+.card:hover .feature-icon i {
+    transform: scale(1.2) rotate(5deg);
+    color: #0056b3;
+}
+
+/* How it works icons */
+.rounded-circle {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+}
+
+.rounded-circle:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
+}
+
+.rounded-circle i {
+    transition: transform 0.4s ease;
+}
+
+.rounded-circle:hover i {
+    transform: scale(1.2);
+}
+
+/* Technology badges */
+.badge {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+/* List group items hover effect */
+.list-group-item {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: rgba(0, 123, 255, 0.05) !important;
+    transform: translateX(5px);
+}
+
+.list-group-item i {
+    transition: transform 0.3s ease;
+}
+
+.list-group-item:hover i {
+    transform: scale(1.2);
+}
+
+/* Animation for card entrance */
+.card-entrance {
+    animation: cardEntrance 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.card-entrance.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.card-entrance.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.card-entrance.delay-3 {
+    animation-delay: 0.3s;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* About page background specific */
+.about-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.about-decoration {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 123, 255, 0.05);
+    pointer-events: none;
+}
+
+.about-decoration:nth-child(1) {
+    width: 350px;
+    height: 350px;
+    top: 5%;
+    right: 10%;
+    animation: float-slow 20s infinite alternate;
+}
+
+.about-decoration:nth-child(2) {
+    width: 250px;
+    height: 250px;
+    bottom: 15%;
+    left: 5%;
+    animation: float-slow 25s infinite alternate-reverse;
+}
+
+.about-decoration:nth-child(3) {
+    width: 180px;
+    height: 180px;
+    top: 40%;
+    left: 25%;
+    animation: float-slow 22s infinite alternate;
+}
+
+@keyframes float-slow {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate(20px, 20px) rotate(5deg);
+    }
+}
+
+/* Floating icons */
+.floating-about {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.about-icon {
+    position: absolute;
+    color: #007bff;
+    opacity: 0.1;
+    animation: float 15s infinite linear;
+}
+
+.about-icon:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    font-size: 30px;
+    animation-duration: 20s;
+    animation-delay: 0s;
+}
+
+.about-icon:nth-child(2) {
+    top: 70%;
+    left: 20%;
+    font-size: 24px;
+    animation-duration: 18s;
+    animation-delay: 2s;
+}
+
+.about-icon:nth-child(3) {
+    top: 40%;
+    left: 80%;
+    font-size: 28px;
+    animation-duration: 25s;
+    animation-delay: 5s;
+}
+
+.about-icon:nth-child(4) {
+    top: 80%;
+    left: 85%;
+    font-size: 22px;
+    animation-duration: 22s;
+    animation-delay: 1s;
+}
+
+.about-icon:nth-child(5) {
+    top: 20%;
+    left: 40%;
+    font-size: 26px;
+    animation-duration: 19s;
+    animation-delay: 3s;
+}
+
+.about-icon:nth-child(6) {
+    top: 60%;
+    left: 60%;
+    font-size: 32px;
+    animation-duration: 21s;
+    animation-delay: 7s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+/* Fixed background styling */
+body {
+    position: relative;
+    overflow-x: hidden;
+    background-color: #f4f7fa;
+    background-image: linear-gradient(135deg, #f4f7fa 0%, #e6f0ff 100%);
+    margin-top: -900px;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23007bff' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'/%3E%3C/svg%3E");
+    opacity: 0.8;
+    z-index: -2;
+}
+
+/* Mission card animation */
+.mission-card-highlight {
+    animation: missionPulse 4s infinite;
+}
+
+@keyframes missionPulse {
+    0% {
+        box-shadow: 0 8px 24px rgba(0, 123, 255, 0.15);
+    }
+    50% {
+        box-shadow: 0 8px 28px rgba(0, 123, 255, 0.3);
+    }
+    100% {
+        box-shadow: 0 8px 24px rgba(0, 123, 255, 0.15);
+    }
+}
+
+/* Images hover effect */
+.img-fluid {
+    max-width: 160px;
+    max-height: 160px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.card:hover .img-fluid {
+    transform: scale(1.03);
+    filter: brightness(1.05);
+}
+
+.mb-4 {
+    margin-top: -40px;
+}

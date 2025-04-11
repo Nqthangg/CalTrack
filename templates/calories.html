@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Calories</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='calories-styles.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+{% endblock %}
+
+{% block content %}
+<!-- Calories-specific background decorations -->
+<div class="calories-background">
+    <div class="calories-decoration"></div>
+    <div class="calories-decoration"></div>
+    <div class="calories-decoration"></div>
+</div>
+  
+<div class="c-container mt-4">
+    <!-- Health Metrics Card - Restructured into 3 rows -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2><i class="fas fa-heartbeat me-2"></i>Your Health Metrics</h2>
+                </div>
+                <div class="card-body">
+                    <div class="health-metrics-container">
+                        <!-- First metric: BMI -->
+                        <div class="health-metrics-row">
+                            <div class="metric-box">
+                                <i class="fas fa-weight display-6 me-3"></i>
+                                <div>
+                                    <h5>BMI</h5>
+                                    <div class="d-flex align-items-center">
+                                        <span class="display-6">{{ bmi }}</span>
+                                        <span class="ms-2 badge {% if obesity_level == 'Underweight' %}bg-info{% elif obesity_level == 'Normal weight' %}bg-success{% elif obesity_level == 'Overweight' %}bg-warning{% else %}bg-danger{% endif %}">
+                                            {{ obesity_level }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                          
+                        <!-- Second metric: BMR -->
+                        <div class="health-metrics-row">
+                            <div class="metric-box">
+                                <i class="fas fa-fire display-6 me-3"></i>
+                                <div>
+                                    <h5>BMR</h5>
+                                    <span class="display-6">{{ user_info[6] }}</span>
+                                    <span>calories/day</span>
+                                </div>
+                            </div>
+                        </div>
+                          
+                        <!-- Third metric: TDEE -->
+                        <div class="health-metrics-row">
+                            <div class="metric-box">
+                                <i class="fas fa-cogs display-6 me-3"></i>
+                                <div>
+                                    <h5>TDEE</h5>
+                                    <span class="display-6">{{ user_info[7] }}</span>
+                                    <span>calories/day</span>
+                                    <p class="small mt-2">This is your recommended daily calorie intake based on your activity level.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Accelerometer Upload Card -->
+        <div class="col-md-6">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2><i class="fas fa-upload me-2"></i>Upload Activity Data</h2>
+                </div>
+                <div class="card-body">
+                    <form id="accelerometer-form" enctype="multipart/form-data" method="POST" action="/upload_accelerometer_data">
+                        <div class="file-upload-container">
+                            <div class="mb-3">
+                                <label for="file-x" class="form-label">X-Axis Data File (CSV/Excel):</label>
+                                <input type="file" id="file-x" name="file" accept=".xlsx,.xls,.csv" required class="form-control">
+                                <small class="form-text text-muted">Upload file containing X-axis accelerometer data</small>
+                            </div>
+                              
+                            <div class="mb-3">
+                                <label for="file-y" class="form-label">Y-Axis Data File (CSV/Excel):</label>
+                                <input type="file" id="file-y" name="file_y" accept=".xlsx,.xls,.csv" required class="form-control">
+                                <small class="form-text text-muted">Upload file containing Y-axis accelerometer data</small>
+                            </div>
+                              
+                            <div class="mb-3">
+                                <label for="file-z" class="form-label">Z-Axis Data File (CSV/Excel):</label>
+                                <input type="file" id="file-z" name="file_z" accept=".xlsx,.xls,.csv" required class="form-control">
+                                <small class="form-text text-muted">Upload file containing Z-axis accelerometer data</small>
+                            </div>
+                        </div>
+                          
+                        <div class="mb-3">
+                            <label for="accelerometer-date" class="form-label">Date (optional):</label>
+                            <input type="date" id="accelerometer-date" name="date" class="form-control">
+                            <small class="form-text text-muted">Leave blank to use today's date</small>
+                        </div>
+                          
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-upload me-2"></i>Upload & Calculate
+                            </button>
+                        </div>
+                    </form>
+                      
+                    <div id="accelerometer-results" class="results-container mt-4" style="display: none;">
+                        <h3 class="border-bottom pb-2 mb-3"><i class="fas fa-chart-line me-2"></i>Accelerometer Results</h3>
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <span class="fw-bold">Calories Burned:</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="accelerometer-calories" class="fs-5 fw-bold text-success">0</span> calories
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <span class="fw-bold">Status:</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="accelerometer-status" class="badge bg-secondary">Not processed</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+    <!-- Daily Calories Card -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2><i class="fas fa-utensils me-2"></i>Daily Calories</h2>
+                </div>
+                <div class="card-body">
+                    <form id="daily-calories-form">
+                        <div class="mb-3">
+                            <label for="calories-intake" class="form-label">Calories Consumed Today:</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-apple-alt"></i></span>
+                                <input type="number" id="calories-intake" name="calories-intake" class="form-control" required min="0" placeholder="Enter calories consumed">
+                                <span class="input-group-text">kcal</span>
+                            </div>
+                        </div>
+                          
+                        <!-- Calories Summary Panel -->
+                        <div class="card bg-light mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Calories Burned Summary</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-8">From Completed Tasks:</div>
+                                    <div id="tasks-calories-burned" class="col-4 text-end fw-bold">{{ burned_tasks|default(0) }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-8">From Accelerometer Data:</div>
+                                    <div id="acc-calories-burned" class="col-4 text-end fw-bold">{{ burned_accelerometer|default(0) }}</div>
+                                </div>
+                                <div class="row pt-2 border-top">
+                                    <div class="col-8 fw-bold">Total Calories Burned:</div>
+                                    <div id="total-burned-calories" class="col-4 text-end fw-bold">{{ (burned_tasks|float + burned_accelerometer|float)|round(2) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                          
+                        <!-- Hidden fields -->
+                        <div class="mb-3 d-none">
+                            <label for="goal-completion" class="form-label">Calories Burned from Goals:</label>
+                            <div class="input-group">
+                                <input type="number" id="goal-completion" name="goal-completion" class="form-control" readonly>
+                                <span class="input-group-text">kcal</span>
+                            </div>
+                        </div>
+                          
+                        <div class="mb-3 d-none">
+                            <input type="hidden" id="total-calories-input" name="total-calories">
+                        </div>
+                          
+                        <!-- Calories Balance -->
+                        <div class="mt-4 text-center p-3 rounded" style="background-color: #f8f9fa;">
+                            <div class="row mb-2">
+                                <div class="col-4 text-end fw-bold">Calories In:</div>
+                                <div class="col-8 text-start">
+                                    <span id="total-intake" class="text-primary fw-bold">{{ intake|default(0) }}</span> kcal
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-4 text-end fw-bold">Calories Out:</div>
+                                <div class="col-8 text-start">
+                                    <span id="total-burned-calories-display" class="text-danger fw-bold">{{ (burned_tasks|float + burned_accelerometer|float)|round(2) }}</span> kcal
+                                </div>
+                            </div>
+                            <div class="row pt-2 border-top">
+                                <div class="col-4 text-end fw-bold">Net Calories:</div>
+                                <div class="col-8 text-start">
+                                    <span id="net-calories" class="fs-4 fw-bold">{{ (intake|float - (burned_tasks|float + burned_accelerometer|float))|round(2) }}</span> kcal
+                                </div>
+                            </div>
+                            <div class="mt-2 text-muted small">
+                                <i class="fas fa-info-circle me-1"></i>Daily recommended net: {{ user_info[7] }} kcal
+                            </div>
+                        </div>
+  
+                        <div class="mt-4 text-center">
+                            <button type="submit" class="btn btn-primary px-5">
+                                <i class="fas fa-save me-2"></i>Save Daily Calories
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+          
+        <!-- Monthly Chart - Fixed container -->
+        <div class="col-md-6">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2><i class="fas fa-chart-line me-2"></i>Monthly Net Calories</h2>
+                </div>
+                <div class="card-body">
+                    <!-- Fixed height chart container -->
+                    <div class="chart-container">
+                        <canvas id="calories-chart"></canvas>
+                    </div>
+                    <div id="no-data-message" class="text-center py-3" style="display: none;">
+                        <p class="text-muted">No calorie data available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='chart.js') }}"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static', filename='calories-animation.js') }}"></script>
+{% endblock %}
